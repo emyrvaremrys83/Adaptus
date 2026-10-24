@@ -1,0 +1,29 @@
+2026-10-24 22:55:48.969 Uvicorn server started on 127.0.0.1:8501
+2026-10-24 23:41:05.135 The widget with key "edit_due_date_JOB-1001" was created with a default value but also had its value set via the Session State API.
+Stack (most recent call last):
+  File "C:\Users\Skota\AppData\Local\Python\pythoncore-3.15-64\Lib\threading.py", line 1180, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\Skota\AppData\Local\Python\pythoncore-3.15-64\Lib\threading.py", line 1218, in _bootstrap_inner
+    self._context.run(self.run)
+  File "C:\Users\Skota\AppData\Local\Python\pythoncore-3.15-64\Lib\threading.py", line 1160, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\Skota\smartflow-ai\.venv\Lib\site-packages\streamlit\runtime\scriptrunner\script_runner.py", line 436, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "C:\Users\Skota\smartflow-ai\.venv\Lib\site-packages\streamlit\runtime\scriptrunner\script_runner.py", line 949, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "C:\Users\Skota\smartflow-ai\.venv\Lib\site-packages\streamlit\runtime\scriptrunner\exec_code.py", line 136, in exec_func_with_error_handling
+    result = func()
+  File "C:\Users\Skota\smartflow-ai\.venv\Lib\site-packages\streamlit\runtime\scriptrunner\script_runner.py", line 924, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "C:\Users\Skota\smartflow-ai\app.py", line 474, in <module>
+    edited_due_date = edited_due_date_col.date_input(t("due"), value=due_default.date(), key=f"edit_due_date_{selected_job}")
+  File "C:\Users\Skota\smartflow-ai\.venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 725, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Skota\smartflow-ai\.venv\Lib\site-packages\streamlit\elements\widgets\time_widgets.py", line 2018, in date_input
+    return self._date_input(
+  File "C:\Users\Skota\smartflow-ai\.venv\Lib\site-packages\streamlit\elements\widgets\time_widgets.py", line 2063, in _date_input
+    check_widget_policies(
+  File "C:\Users\Skota\smartflow-ai\.venv\Lib\site-packages\streamlit\elements\lib\policies.py", line 146, in check_widget_policies
+    check_session_state_rules(
+  File "C:\Users\Skota\smartflow-ai\.venv\Lib\site-packages\streamlit\elements\lib\policies.py", line 90, in check_session_state_rules
+    _LOGGER.warning(

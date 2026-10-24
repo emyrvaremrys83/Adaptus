@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8" /></head>
+  <body>
+    <script>
+      (() => {
+        let sequence = Date.now();
+
+        function sendKey(event) {
+          const target = event.target;
+          if (target && target.closest && target.closest(
+            'input, textarea, select, button, [contenteditable="true"], [role="textbox"], [role="combobox"], [role="button"]'
+          )) return;
+          if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+          const key = event.key;
+          if (key !== "ArrowLeft" && key !== "ArrowRight" && key.toLowerCase() !== "a" && key.toLowerCase() !== "d") return;
+
+          event.preventDefault();
+          window.parent.postMessage({
+            isStreamlitMessage: true,
+            type: "streamlit:setComponentValue",
+            value: { key, sequence: ++sequence },
+            dataType: "json",
+          }, "*");
+        }
+
+        try {
+          window.parent.document.addEventListener("keydown", sendKey, true);
+        } catch (_error) {
+          window.addEventListener("keydown", sendKey, true);
+        }
+
+        window.parent.postMessage({
+          isStreamlitMessage: true,
+          type: "streamlit:componentReady",
+          apiVersion: 1,
+        }, "*");
+        window.parent.postMessage({
+          isStreamlitMessage: true,
+          type: "streamlit:setFrameHeight",
+          height: 0,
+        }, "*");
+      })();
+    </script>
+  </body>
+</html>
